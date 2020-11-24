@@ -1,0 +1,177 @@
+@charset "UTF-8"
+// Minor Browser reset
+*, *::after, *::before
+    box-sizing: border-box
+
+body
+    font-family: 'Mulish', sans-serif
+    font-size: 1rem
+    font-weight: 400
+    line-height: 1.5
+    margin: 0
+    padding: 0
+    background-color: rgb(250, 250, 250)
+    color: rgb(35, 35, 51)
+
+.bg-dark 
+    background-color: rgb(40,57,75)
+
+.text-white
+    color: rgb(255, 255, 255)
+
+// Table styles
+.container
+    border-radius: 0.25rem
+    box-shadow: 0 1.9px 2.5px 0 rgba(0, 0, 0, 0.045), 0 3.8px 20px 0 rgba(0, 0, 0, 0.09)
+    margin: 5rem auto
+    max-width: 60rem
+    position: relative
+    width: 90%
+
+.table
+    border-collapse: separate
+    border-spacing: 0
+    width: 100%
+
+    th
+        font-weight: 600
+        text-align: left
+
+    th, td
+        font-size: 0.75rem
+        padding: 0.75rem 0.5rem
+
+    tbody
+        th
+            padding: 0
+
+        td, td .has-blur
+            transition: filter 0.25s ease-in-out
+
+        // show button and add blur on click of fixed-col
+        .fixed-col:focus ~ td:not(.no-blur), .fixed-col:focus-within ~ td:not(.no-blur)
+            filter: blur(2px)
+
+        .fixed-col:focus ~ td .has-blur, .fixed-col:focus-within ~ td .has-blur
+            filter: blur(2px)
+
+        .fixed-col:focus ~ td .view-link, .fixed-col:focus-within ~ td .view-link
+            display: inline-block
+
+// enable horizontal scroll on over-flow
+.table-scroll
+    border-radius: 0.25rem
+    width: 100%
+    overflow-x: auto
+    overflow-y: visible
+
+// add uneven stripped color to table rows
+.table-stripped
+    tbody
+        tr, tr .fixed-col
+            background-color: rgb(255, 255, 255)
+
+        tr:nth-of-type(odd), tr:nth-of-type(odd) .fixed-col
+            background-color: rgb(240,244,247)
+
+// el w/ dropdown
+.dropdown-text
+    display: inline-block
+    vertical-align: middle
+
+// Add Dropdown icon to el
+.dropdown-icon
+    cursor: pointer
+    display: inline-block
+    margin-left: 0.5rem
+    position: relative
+    vertical-align: middle
+
+    &::after
+        content: '\25BC'
+        top: 0
+        transform: translateY(-50%)
+        position: absolute
+
+// fixed columns
+.fixed-col
+    left: 0
+    top: auto
+    min-width: 8rem
+    position: relative
+    width: 10rem
+    z-index: 4
+
+    &::after
+        box-shadow: 3px 0 4px -1px rgba(0, 0, 0, 0.075)
+        content: ""
+        height: 100%
+        position: absolute
+        right: 0
+        top: 0
+        width: 0.5rem
+
+// highlighted text
+.highlighted
+    background-color: rgb(255,224,174)
+    border-radius: 0.15rem
+    color:rgb(187,152,87)
+    font-size: 0.65rem
+    padding: 0.15rem 0.25rem
+    white-space: nowrap
+
+// view more button
+.view-link
+    background-color: rgb(255, 255, 255)
+    border: 1px solid rgb(150, 150, 170)
+    border-radius: 0.25rem
+    color: rgb(35, 35, 51)
+    display: none
+    font-size: 0.65rem
+    left: 50%
+    min-width: fit-content
+    width: 5rem
+    padding: 0.35rem
+    position: absolute
+    text-decoration: none
+    top: 50%
+    text-align: center
+    transition: 0.25s padding ease-in-out
+    transform: translate(-50%, -50%)
+    // z-index: 8
+
+    &:hover, &:focus
+        padding: 0.45rem
+
+// relative td
+.relative-cell
+    position: relative
+    display: table-cell
+    height: 100%
+
+// btn styles
+.btn
+    border: none
+    font-size: 0.75rem
+    font-family: 'Mulish', sans-serif
+    cursor: pointer
+
+    &-transparent
+        background-color: transparent
+        display: inline-block
+        width: 100%
+        font-weight: 600
+        line-height: 1.5
+        padding: 0.75rem 0.5rem
+        text-align: left
+
+        &:focus
+            outline: none
+
+.fixed-w 
+    min-width: fit-content
+
+// enable fixed column only on specific screen size
+@media screen and (min-width: 576px)
+    .fixed-col
+        position: sticky
